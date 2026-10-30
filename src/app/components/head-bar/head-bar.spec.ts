@@ -13,7 +13,7 @@ describe('HeadBar', () => {
   });
 
   it('renders the title', () => {
-    expect(root.querySelector('h1')?.textContent).toContain('My Showroom');
+    expect(root.querySelector('h1')?.textContent).toContain("Ayoub's Showroom");
   });
 
   it('shows the favourites count it receives from its parent', async () => {

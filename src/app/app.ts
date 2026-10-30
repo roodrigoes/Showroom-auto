@@ -36,7 +36,7 @@ export class App {
 
   /**
    * « View-model » : UN seul flux qui contient tout ce dont la page a besoin.
-   * combineLatest = le tableau de la station de louage 🚐 : il se réaffiche dès que
+   * combineLatest = le tableau de la station de louage : il se réaffiche dès que
    * l'une de ses sources change (catalogue, critères, favoris, mode garage).
    */
   readonly vm$ = combineLatest([

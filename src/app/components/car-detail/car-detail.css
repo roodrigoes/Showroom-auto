@@ -10,23 +10,22 @@
 .backdrop {
   position: absolute;
   inset: 0;
-  background: rgb(8 24 17 / 62%);
-  backdrop-filter: blur(3px);
-  animation: fade 0.2s ease;
+  background: rgb(28 26 23 / 55%);
+  animation: fade var(--dur-base) ease;
 }
 
 .dialog {
   position: relative;
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  width: min(980px, 100%);
-  max-height: min(92vh, 860px);
+  width: min(var(--dialog-max-w), 100%);
+  max-height: min(92vh, var(--dialog-max-h));
   overflow: auto;
-  border-radius: var(--radius-l);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-m);
   background: var(--surface);
-  box-shadow: var(--shadow-lift);
   outline: none;
-  animation: rise 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: rise var(--dur-base) var(--ease-out);
 }
 
 .close {
@@ -36,24 +35,24 @@
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 2.6rem;
-  height: 2.6rem;
-  border: 0;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 92%);
-  box-shadow: 0 2px 10px rgb(18 33 26 / 20%);
-  transition: transform 0.2s;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  transition: border-color var(--dur-fast);
 }
 
 .close:hover {
-  transform: rotate(90deg);
+  border-color: var(--ink);
 }
 
 .photo {
   display: grid;
   place-items: center;
   padding: 2rem 1.25rem;
-  background: radial-gradient(120% 100% at 50% 105%, #d3dfd6 0%, #f2f5f1 66%);
+  border-right: 1px solid var(--line);
+  background: var(--panel);
 }
 
 .photo img {
@@ -70,16 +69,21 @@
 
 .brand {
   margin: 0;
-  color: var(--green-600);
+  color: var(--muted);
+  font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .model {
   margin: -0.6rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(2.3rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
 }
 
 .headline {
@@ -91,8 +95,7 @@
 
 .price {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -100,27 +103,22 @@
 .specs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
   margin: 0;
   padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
   list-style: none;
 }
 
-.specs li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  background: var(--green-100);
-  color: var(--green-800);
-  font-size: 0.85rem;
-  font-weight: 600;
+.specs li + li::before {
+  content: '\00B7';
+  margin: 0 0.5rem;
+  color: var(--line-strong);
 }
 
 .specs li.low {
-  background: var(--amber-bg);
-  color: var(--amber);
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .description {
@@ -141,36 +139,41 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.9rem;
-  padding: 0 1.3rem;
-  border-radius: 999px;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-s);
   font-weight: 600;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
 }
 
 .primary {
-  border: 0;
-  background: var(--green-800);
-  color: #fff;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--surface);
 }
 
 .primary:hover {
-  background: var(--green-600);
+  background: var(--ink-soft);
 }
 
 .secondary {
-  border: 1px solid var(--line);
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: transparent;
 }
 
 .secondary:hover {
-  border-color: #b8c7bd;
+  border-color: var(--ink);
+}
+
+.primary:active,
+.secondary:active {
+  transform: translateY(1px);
 }
 
 .secondary.on {
-  border-color: #f0b5be;
-  background: #fdecee;
-  color: var(--heart);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 @keyframes fade {
@@ -182,7 +185,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(var(--nudge-lg));
   }
 }
 
@@ -197,10 +200,13 @@
     grid-template-columns: 1fr;
     width: 100%;
     max-height: 94vh;
-    border-radius: var(--radius-l) var(--radius-l) 0 0;
+    border-width: 1px 0 0;
+    border-radius: 0;
   }
 
   .photo {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
     padding: 1.5rem 1rem 0.5rem;
   }
 

@@ -7,12 +7,18 @@
 
   <main class="page">
     <section class="intro">
-      <h2 class="intro-title">{{ vm.garageOnly ? 'Yassine garage' : 'Find your next car' }}</h2>
+      <h2 class="intro-title">
+        @if (vm.garageOnly) {
+          Your garage
+        } @else {
+          On the floor<br />this week
+        }
+      </h2>
       <p class="intro-text">
         {{
           vm.garageOnly
-            ? 'The cars you saved, ready for a test drive.'
-            : 'Browse the collection, save your favourites and book a test drive.'
+            ? 'The cars you saved. Open one to book a test drive.'
+            : 'Prices in Tunisian dinars, stock counted daily. Save the ones you like, compare them against the used market, then book a drive.'
         }}
       </p>
     </section>
@@ -38,11 +44,11 @@
       <section class="empty">
         @if (vm.garageOnly && vm.total === 0) {
           <h3>Your garage is empty</h3>
-          <p>Tap the heart on any car to save it here.</p>
+          <p>Use the heart on any car to keep it here.</p>
           <button type="button" class="empty-action" (click)="toggleGarage()">Browse all cars</button>
         } @else {
           <h3>No car matches these filters</h3>
-          <p>Try a larger budget or a lower power, or reset the filters above.</p>
+          <p>Raise the budget, lower the power, or reset the filters.</p>
         }
       </section>
     }

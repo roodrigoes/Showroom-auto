@@ -3,32 +3,48 @@
    propre template. Les variables CSS définies ici sur :root, elles, traversent
    l'encapsulation (une variable CSS est héritée par tous les descendants). */
 :root {
-  --ink: #12211a;
-  --ink-soft: #3d4f45;
-  --muted: #66766d;
-  --paper: #f1f4ef;
-  --surface: #ffffff;
-  --line: #dde4dd;
+  /* Neutrals carry the page; one accent (oxblood) for favourites, low stock and errors. */
+  --ink: #1c1a17;
+  --ink-soft: #46423c;
+  --muted: #6b665e;
+  --paper: #f4f1ea;
+  --surface: #faf8f3;
+  --surface-hover: #fffdf8;
+  --panel: #ebe7de;
+  --line: #d9d3c7;
+  --line-strong: #b9b1a2;
 
-  --green-900: #082f21;
-  --green-800: #0b4a32;
-  --green-600: #17724d;
-  --green-100: #e1eee7;
+  --accent: #9b2c1f;
+  --accent-soft: #f3e3dd;
 
-  --heart: #d6334a;
-  --amber: #9a5207;
-  --amber-bg: #fcefd9;
-  --danger: #b3261e;
+  /* Kept for components that still read these names */
+  --heart: var(--accent);
+  --amber: var(--accent);
+  --amber-bg: var(--accent-soft);
+  --danger: var(--accent);
 
-  --radius-s: 8px;
-  --radius-m: 14px;
-  --radius-l: 22px;
+  --radius-s: 2px;
+  --radius-m: 4px;
+  --radius-l: 6px;
 
-  --shadow-soft: 0 1px 2px rgb(18 33 26 / 6%), 0 10px 24px -14px rgb(18 33 26 / 22%);
-  --shadow-lift: 0 2px 4px rgb(18 33 26 / 8%), 0 26px 44px -20px rgb(18 33 26 / 38%);
+  --page-max: 1240px;
+  --card-min: 290px;
+  --dialog-max-w: 980px;
+  --dialog-max-h: 860px;
+  --focus-width: 2px;
+  --nudge: 3px;
+  --nudge-lg: 8px;
+  --underline-offset: 4px;
 
-  --font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --space-section: clamp(2.5rem, 6vw, 5rem);
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 0.15s;
+  --dur-base: 0.2s;
+  --dur-shimmer: 1.3s;
+
+  --font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Archivo', 'Arial Narrow', sans-serif;
 
   color-scheme: light;
 }
@@ -50,6 +66,7 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.5;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,8 +88,8 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--green-600);
-  outline-offset: 2px;
+  outline: var(--focus-width) solid var(--ink);
+  outline-offset: var(--focus-width);
 }
 
 /* Texte lisible uniquement par les lecteurs d'écran */

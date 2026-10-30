@@ -3,17 +3,17 @@
 }
 
 .market {
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-m);
-  background: #f7f9f6;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--ink);
 }
 
 .title {
   margin: 0 0 0.6rem;
-  font-family: var(--font-display);
-  font-size: 1.35rem;
+  color: var(--muted);
+  font-size: 0.75rem;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .figures {
@@ -31,8 +31,7 @@
 
 .figure {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.1;
 }
@@ -40,7 +39,7 @@
 .gap {
   margin: 0.6rem 0 0;
   font-weight: 600;
-  color: var(--green-800);
+  color: var(--ink);
 }
 
 .hint,
@@ -57,7 +56,7 @@
 }
 
 .source a {
-  color: var(--green-800);
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -65,20 +64,21 @@
   display: inline-block;
   margin-right: 0.4rem;
   padding: 0.05rem 0.55rem;
-  border-radius: 999px;
-  background: var(--amber-bg);
-  color: var(--amber);
-  font-size: 0.78rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-s);
+  color: var(--accent);
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
 .retry {
   margin-top: 0.5rem;
-  padding: 0.45rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--green-800);
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -91,10 +91,10 @@
   display: block;
   width: 45%;
   height: 1.3rem;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #e3e9e4 25%, #f1f4f0 50%, #e3e9e4 75%);
+  border-radius: var(--radius-s);
+  background: linear-gradient(90deg, var(--panel) 25%, var(--surface) 50%, var(--panel) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.3s linear infinite;
+  animation: shimmer var(--dur-shimmer) linear infinite;
 }
 
 .bar.wide {

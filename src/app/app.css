@@ -1,73 +1,94 @@
-
 :host {
   display: block;
   min-height: 100vh;
 }
 
 .page {
-  max-width: 1240px;
+  max-width: var(--page-max);
   margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 4vw, 2.5rem) 4rem;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2.5rem) var(--space-section);
 }
 
+/* Titre large et court à gauche, texte calé sur la ligne de base à droite (7/5). */
 .intro {
-  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 1.5rem clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .intro-title {
-  margin: 0 0 0.3rem;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 6vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.02;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .intro-text {
-  max-width: 56ch;
+  max-width: 44ch;
   margin: 0;
   color: var(--ink-soft);
+  font-size: 1.05rem;
 }
 
-/* Autant de colonnes que la largeur le permet, jamais plus étroites que 290px.
-   Sur téléphone : une seule colonne, sans media query. */
+/* Grille « catalogue » : cases jointives séparées par des filets, sans ombres.
+   Les filets viennent du fond de la grille qui apparaît dans les gouttières de 1px. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
-  gap: clamp(1rem, 2vw, 1.75rem);
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr));
+  gap: 1px;
+  margin-top: 2rem;
+  border: 1px solid var(--line);
+  background: var(--line);
 }
 
 .empty {
-  margin-top: 1.5rem;
-  padding: 3rem 1.5rem;
-  border: 1px dashed #c3cfc6;
-  border-radius: var(--radius-l);
-  background: var(--surface);
-  text-align: center;
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  border-top: 1px solid var(--ink);
 }
 
 .empty h3 {
-  margin: 0 0 0.3rem;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .empty p {
-  margin: 0 0 1rem;
+  max-width: 50ch;
+  margin: 0 0 0.75rem;
   color: var(--muted);
 }
 
 .empty-action {
-  padding: 0.7rem 1.4rem;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
   border: 0;
-  border-radius: 999px;
-  background: var(--green-800);
-  color: #fff;
+  border-radius: var(--radius-s);
+  background: var(--ink);
+  color: var(--surface);
   font-weight: 600;
-  transition: background-color 0.2s;
+  transition: background-color var(--dur-fast);
 }
 
 .empty-action:hover {
-  background: var(--green-600);
+  background: var(--ink-soft);
+}
+
+@media (max-width: 760px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
 }

@@ -25,14 +25,15 @@
     <h3 class="model">{{ car.model }}</h3>
 
     <ul class="specs">
-      <li><fa-icon [icon]="faGaugeHigh" /> {{ car.power }} CV</li>
-      <li [class.low]="lowStock">{{ car.availability }} in stock</li>
+      <li>{{ car.power }} CV</li>
+      <li [class.low]="lowStock">{{ lowStock ? 'Only ' : '' }}{{ car.availability }} in stock</li>
     </ul>
 
     <div class="foot">
       <p class="price">{{ car.price * 1000 | currency: 'TND' : 'symbol' : '1.0-0' }}</p>
       <button type="button" class="more" (click)="detailsOpen.emit(car)">
-        View details<span class="sr-only"> for {{ car.brand }} {{ car.model }}</span>
+        Details<span class="sr-only"> for {{ car.brand }} {{ car.model }}</span>
+        <fa-icon [icon]="faArrowRight" />
       </button>
     </div>
   </div>

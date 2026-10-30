@@ -75,7 +75,7 @@
       <div class="actions">
         <button type="button" class="ghost" (click)="closed.emit()">Cancel</button>
         <button type="submit" class="primary" [disabled]="status.kind === 'saving'">
-          {{ status.kind === 'saving' ? 'Booking…' : 'Confirm booking' }}
+          {{ status.kind === 'saving' ? 'Booking' : 'Confirm booking' }}
         </button>
       </div>
     </form>

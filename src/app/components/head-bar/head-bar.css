@@ -1,9 +1,10 @@
-
 :host {
   position: sticky;
   top: 0;
   z-index: 20;
   display: block;
+  /* Le fond couvre toute la largeur, la barre elle-même reste à var(--page-max). */
+  background: var(--paper);
 }
 
 .bar {
@@ -11,36 +12,36 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
-  background: var(--green-900);
-  color: #fff;
-  box-shadow: 0 8px 22px -14px rgb(8 47 33 / 70%);
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0.9rem clamp(1rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
 }
 
 .brand {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: baseline;
+  gap: 1.25rem;
   min-width: 0;
-}
-
-.brand-icon {
-  font-size: 1.7rem;
-  color: #8fd5b0;
 }
 
 .brand-name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
-  font-weight: 700;
+  font-size: clamp(1.4rem, 3.5vw, 1.75rem);
+  font-stretch: 75%;
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .tagline {
-  margin: 0.25rem 0 0;
-  font-size: 0.82rem;
-  color: #b7d6c6;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .garage {
@@ -48,52 +49,58 @@
   align-items: center;
   gap: 0.55rem;
   min-height: 2.75rem;
-  padding: 0.4rem 0.6rem 0.4rem 1rem;
-  border: 1px solid rgb(255 255 255 / 30%);
-  border-radius: 999px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
   background: transparent;
-  color: #fff;
+  color: var(--ink);
   font-weight: 600;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  transition: border-color var(--dur-fast), background-color var(--dur-fast), color var(--dur-fast);
 }
 
 .garage:hover {
-  background: rgb(255 255 255 / 12%);
-  border-color: rgb(255 255 255 / 55%);
+  border-color: var(--ink);
 }
 
-/* Mode « garage » actif : le bouton s'inverse pour montrer qu'on est dans cette vue. */
+.garage:active {
+  background: var(--panel);
+}
+
+.garage fa-icon {
+  color: var(--muted);
+}
+
+/* Vue « garage » active : le bouton passe en encre pleine. */
 .garage.active {
-  background: #fff;
-  border-color: #fff;
-  color: var(--green-900);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface);
 }
 
 .garage.active fa-icon {
-  color: var(--heart);
+  color: var(--accent-soft);
 }
 
 .badge {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.75rem;
-  height: 1.75rem;
-  padding: 0 0.45rem;
-  border-radius: 999px;
-  background: var(--heart);
-  color: #fff;
-  font-size: 0.8rem;
+  min-width: 1.5ch;
   font-weight: 700;
+  text-align: right;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   .tagline {
     display: none;
   }
 }
 
 @media (max-width: 380px) {
+  /* Caché à l'écran mais toujours lu : le bouton garde son nom « My garage ». */
   .garage-label {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }

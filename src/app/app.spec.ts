@@ -16,7 +16,7 @@ describe('App', () => {
     await fixture.whenStable();
     const root = fixture.nativeElement as HTMLElement;
 
-    expect(root.querySelector('h1')?.textContent).toContain('My Showroom');
+    expect(root.querySelector('h1')?.textContent).toContain("Ayoub's Showroom");
     expect(root.querySelectorAll('app-car-card').length).toBe(16);
   });
 
